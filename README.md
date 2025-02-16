@@ -94,4 +94,4 @@ go test -v ./...
 ```
 
 ## API Docs
-[openapi](url:https://github.com/Dev-AustinPeter/spamhaus-take-home-task/docs/openapi.yaml)
+[openapi](https://github.com/Dev-AustinPeter/spamhaus-take-home-task/blob/main/docs/openapi.yaml)
