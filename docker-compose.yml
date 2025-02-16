@@ -1,0 +1,10 @@
+version: "3.9"
+
+services:
+  spamhaus-take-home-task:
+    build: .
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data.json:/root/data.json
+    restart: unless-stopped
