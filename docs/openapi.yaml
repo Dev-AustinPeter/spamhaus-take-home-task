@@ -1,0 +1,67 @@
+openapi: 3.0.0
+info:
+  title: Spamhaus Take Home Task
+  description: API for submitting, retrieving, and managing URLs.
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+paths:
+  /url:
+    post:
+      summary: Submit a URL
+      description: Accepts a URL and stores it for processing.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                  example: "http://example.com"
+      responses:
+        202:
+          description: URL accepted for processing.
+        400:
+          description: Invalid request.
+    get:
+      summary: Retrieve stored URL
+      description: Returns a URL with submission counts.
+      parameters:
+        - name: url
+          in: query
+          required: true
+          description: to fetch the specific URL
+          schema:
+            type: string
+            example: "http://example.com"
+      responses:
+        200:
+          description: Successful retrieval.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    url:
+                      type: string
+                    count:
+                      type: integer
+  /urls:
+    get:
+      summary: Retrieve latest 50 URLs
+      description: Returns the most recently submitted URLs, sorted based on query parameter.
+      parameters:
+        - name: sort
+          in: query
+          description: Sorting method (default is latest, "smallest" for least submitted first)
+          schema:
+            type: string
+            enum: [latest, smallest]
+      responses:
+        200:
+          description: Successfully retrieved latest URLs.
