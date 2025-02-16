@@ -44,7 +44,9 @@ go mod tidy
 ```
 Run the application:
 ```sh
-go run cmd/api/main.go
+go run cmd/main.go
+or 
+make run
 ```
 
 ## API Endpoints
